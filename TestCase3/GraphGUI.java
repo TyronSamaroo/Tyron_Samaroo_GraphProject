@@ -1,26 +1,26 @@
-package TestCase1;
+package TestCase3;
 
-        import javafx.animation.ParallelTransition;
-        import javafx.animation.TranslateTransition;
-        import javafx.application.Application;
-        import javafx.event.ActionEvent;
-        import javafx.event.EventHandler;
-        import javafx.geometry.Insets;
-        import javafx.geometry.Pos;
-        import javafx.scene.Scene;
-        import javafx.scene.canvas.Canvas;
-        import javafx.scene.canvas.GraphicsContext;
-        import javafx.scene.control.Button;
-        import javafx.scene.control.RadioButton;
-        import javafx.scene.control.ToggleGroup;
-        import javafx.scene.layout.GridPane;
-        import javafx.scene.layout.StackPane;
-        import javafx.scene.paint.Color;
-        import javafx.scene.shape.Circle;
-        import javafx.stage.Stage;
-        import javafx.util.Duration;
+import javafx.animation.ParallelTransition;
+import javafx.animation.TranslateTransition;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
-        import java.awt.*;
+import java.awt.*;
 
 
 public class GraphGUI extends Application{
@@ -52,7 +52,6 @@ public class GraphGUI extends Application{
 
 
 
-
         GridPane radiogrid = new GridPane();
         radiogrid.setAlignment(Pos.BASELINE_LEFT);
         RadioButton AddVertex = new RadioButton("Add Vertex");
@@ -73,6 +72,12 @@ public class GraphGUI extends Application{
         radiogrid.add(RemoveEdge, 0, 3);
         radiogrid.add(MoveVertex, 0, 4);
 
+
+        AddVertex.setOnMousePressed(event -> {
+            Vertices data = new Vertices();
+
+
+        });
 
 
 
