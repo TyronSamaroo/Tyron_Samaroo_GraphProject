@@ -27,7 +27,11 @@ public class LinkedList<T> {
         return size == 0;
     }
 
-    public void addHead( T data) {
+    public Node<T> getHead() {
+        return head;
+    }
+
+    public void addHead(T data) {
         Node<T> n = new Node<>(data, head);
         head = n;
         if (tail == null)
@@ -65,6 +69,7 @@ public class LinkedList<T> {
        // Node<T> t = tail;
         ans += "(H)-->";
         while (n != null) { //t != null
+
             ans += n.getData();
             ans += "-->";
            // ans += t.getData();
