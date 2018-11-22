@@ -9,8 +9,8 @@ public  class Graph<V,E>  {
  private DoubleLinkedList<Edge<E>> edgeDoubleLinkedList = new DoubleLinkedList<>();
 
  public Graph(){
-     vertexDoubleLinkedList = null;
-     edgeDoubleLinkedList = null;
+     vertexDoubleLinkedList = new DoubleLinkedList<>();
+     edgeDoubleLinkedList = new DoubleLinkedList<>();
  }
 
  // Methods for graph will go here
@@ -19,17 +19,19 @@ public  class Graph<V,E>  {
 
 
  // This is how I will add a Vertex to the Graph.
-    public Vertex<V> addVertex(V data){
-     InnerVertex<V> vnew = new InnerVertex<>(data);
-     vertexDoubleLinkedList.addLast(vnew);
-     return  vnew;
+    public void addVertex(V data) throws Exception {
+
+     Vertex<V> vnew = new InnerVertex<>(data);
+
+        vertexDoubleLinkedList.addLast(vnew);
+
     }
 
 
      // I made an InnerVertex class to help access the unique data type V
           class InnerVertex<V> implements Vertex<V>{
          protected V data;
-         private DoubleNode<Vertex<V>> location;
+         public DoubleNode<Vertex<V>> vertexDoubleNode;
 
          public InnerVertex(V data){
              this.data = data;
@@ -38,15 +40,15 @@ public  class Graph<V,E>  {
          public void setVertex(V data){this.data =data;}
 
 
-         public void setLocation(DoubleNode<Vertex<V>> location){
-             this.location = location; }
-         public DoubleNode<Vertex<V>> getLocation() {return location; }
+         public void setVertexDoubleNode(DoubleNode<Vertex<V>> vertexDoubleNode){
+             this.vertexDoubleNode = vertexDoubleNode; }
+         public DoubleNode<Vertex<V>> getVertexDoubleNode() {return vertexDoubleNode; }
      }
 
     // I made an InnerVertex class to help access the unique data type V
       private class InnerEdges<E> implements Edge<E> {
          public E data;
-         private DoubleNode<Edge<E>> location;
+         private DoubleNode<Edge<E>> edgeDoubleNode;
          private Vertex<V>[] endpoints;
 
          public InnerEdges(Vertex<Vertex> a, Vertex<Vertex> b, E data){
@@ -56,18 +58,30 @@ public  class Graph<V,E>  {
          public E getEdge(){return  data;}
          public void setEdge(E data){ this.data = data;}
 
-          public void setLocation(DoubleLinkedList<Vertex<V>> a){
-              this.location = location; }
-          public DoubleNode<Edge<E>> getLocation() {return location; }
-
-
-
-
-
-
+          public void setEdgeDoubleNode(DoubleLinkedList<Vertex<V>> a){
+              this.edgeDoubleNode = edgeDoubleNode; }
+          public DoubleNode<Edge<E>> getEdgeDoubleNode() {return edgeDoubleNode; }
 
 
      }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
+    public static void main(String[] args) {
+        Graph<Integer,Integer> somegraph = new Graph<>();
+        try {
+
+            somegraph.addVertex(2);
+            System.out.println(somegraph.numberVertex());
+
+        }
+        catch (Exception e){
+            System.out.println("Error");
+        }
+    }
 
 
 

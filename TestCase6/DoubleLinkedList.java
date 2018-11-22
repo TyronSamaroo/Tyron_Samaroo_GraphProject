@@ -60,7 +60,7 @@ public class DoubleLinkedList<T> {
 
     // methods to change the list
 
-    public void addBefore(T d, DoubleNode<T> current) {
+    public DoubleNode addBefore(T d, DoubleNode<T> current) {
         DoubleNode<T> temp = current.getPrev();   // This is the node that was already before the current
         DoubleNode<T> newNode = new DoubleNode<T>(d,temp,current); // Node created with have current previous and
         // current as its next
@@ -74,9 +74,10 @@ public class DoubleLinkedList<T> {
 //                current.getPrev().setNext(x);
 //                current.setPrev(x);
         size++;
+        return newNode;
     }
 
-    public void addAfter(T d, DoubleNode<T> current) {
+    public DoubleNode<T> addAfter(T d, DoubleNode<T> current) {
 //        DoubleNode<T> w = v.getNext();
 //        DoubleNode<T> x = new DoubleNode<T>(d, v, w);
 //        v.setNext(x);
@@ -88,14 +89,16 @@ public class DoubleLinkedList<T> {
 
 
         size++;
+        return x;
     }
 
-    public void addFirst(T d) throws Exception {
-        addAfter(d, header);
+    public DoubleNode<T> addFirst(T d) throws Exception {
+        return  addAfter(d, header);
     }
 
-    public void addLast(T d) {
-        addBefore(d, trailer);
+    public DoubleNode addLast(T d) {
+       return addBefore(d, trailer);
+
     }
 
     public T remove(DoubleNode<T> v) throws Exception {
@@ -129,70 +132,75 @@ public class DoubleLinkedList<T> {
     }
 
     public static void main(String args[]) {
-        DoubleLinkedList<String> list = new DoubleLinkedList<String>();
-        DoubleNode<String> cursor = null;
-        boolean done = false;
-        Scanner s = new Scanner(System.in);
-        while (!done) {
-            try {
-                System.out.print(list + "  ");
-                if (cursor != null && cursor.getData() != null)
-                    System.out.print(" ^^ " + cursor.getData());
-                System.out.println("\ncmds are H(elp) F L B A R + - Q: >>");
-                String cmd = s.next().trim().toUpperCase();
-                String entry = null;
-                char command = cmd.charAt(0);
-                if (command == 'F' || command == 'L' || command == 'B'
-                        || command == 'A')
-                    entry = s.next();
-                switch (cmd.charAt(0)) {
-                    case 'Q':
-                        done = true;
-                        break;
-                    case 'H':
-                        String help = "H: Help \n" + "F x: Add x at first place\n"
-                                + "L x: Add x at last place\n"
-                                + "B x: Add x before the cursor\n"
-                                + "A x: Add x after the cursor\n"
-                                + "A x: Add x after the cursor\n"
-                                + "+  : Advance the cursor\n"
-                                + "-  : Move the cursor back\n";
-                        System.out.print(help);
-                        break;
-                    case 'R':
-                        DoubleNode<String> e = cursor.getNext();
-                        list.remove(cursor);
-                        cursor = e;
-                        if (cursor == list.trailer)
-                            cursor = cursor.getPrev();
-                        break;
-                    case '+':
-                        cursor = list.getNext(cursor);
-                        break;
-                    case '-':
-                        cursor = list.getPrev(cursor);
-                        break;
-                    case 'F':
-                        list.addFirst(entry);
-                        cursor = list.getFirst();
-                        break;
-                    case 'L':
-                        list.addLast(entry);
-                        cursor = list.getLast();
-                        break;
-                    case 'B':
-                        list.addBefore(entry, cursor);
-                        cursor = list.getPrev(cursor);
-                        break;
-                    case 'A':
-                        list.addAfter(entry, cursor);
-                        cursor = list.getNext(cursor);
-                        break;
-                }
-            } catch (Exception e) {
-                System.out.println("Command failed because: " + e.toString());
-            }
-        }
-        s.close();
+        DoubleLinkedList<Integer> a = new DoubleLinkedList<>();
+        a.addLast(2);
+        System.out.println(a);
+
+
+//        DoubleLinkedList<String> list = new DoubleLinkedList<String>();
+//        DoubleNode<String> cursor = null;
+//        boolean done = false;
+//        Scanner s = new Scanner(System.in);
+//        while (!done) {
+//            try {
+//                System.out.print(list + "  ");
+//                if (cursor != null && cursor.getData() != null)
+//                    System.out.print(" ^^ " + cursor.getData());
+//                System.out.println("\ncmds are H(elp) F L B A R + - Q: >>");
+//                String cmd = s.next().trim().toUpperCase();
+//                String entry = null;
+//                char command = cmd.charAt(0);
+//                if (command == 'F' || command == 'L' || command == 'B'
+//                        || command == 'A')
+//                    entry = s.next();
+//                switch (cmd.charAt(0)) {
+//                    case 'Q':
+//                        done = true;
+//                        break;
+//                    case 'H':
+//                        String help = "H: Help \n" + "F x: Add x at first place\n"
+//                                + "L x: Add x at last place\n"
+//                                + "B x: Add x before the cursor\n"
+//                                + "A x: Add x after the cursor\n"
+//                                + "A x: Add x after the cursor\n"
+//                                + "+  : Advance the cursor\n"
+//                                + "-  : Move the cursor back\n";
+//                        System.out.print(help);
+//                        break;
+//                    case 'R':
+//                        DoubleNode<String> e = cursor.getNext();
+//                        list.remove(cursor);
+//                        cursor = e;
+//                        if (cursor == list.trailer)
+//                            cursor = cursor.getPrev();
+//                        break;
+//                    case '+':
+//                        cursor = list.getNext(cursor);
+//                        break;
+//                    case '-':
+//                        cursor = list.getPrev(cursor);
+//                        break;
+//                    case 'F':
+//                        list.addFirst(entry);
+//                        cursor = list.getFirst();
+//                        break;
+//                    case 'L':
+//                        list.addLast(entry);
+//                        cursor = list.getLast();
+//                        break;
+//                    case 'B':
+//                        list.addBefore(entry, cursor);
+//                        cursor = list.getPrev(cursor);
+//                        break;
+//                    case 'A':
+//                        list.addAfter(entry, cursor);
+//                        cursor = list.getNext(cursor);
+//                        break;
+//                }
+//            } catch (Exception e) {
+//                System.out.println("Command failed because: " + e.toString());
+//            }
+//        }
+//        s.close();
     }
 }

@@ -31,13 +31,14 @@ public class LinkedList<T> {
         return head;
     }
 
-    public void addHead(T data) {
+    public Node<T> addHead(T data) {
         Node<T> n = new Node<>(data, head);
         head = n;
         if (tail == null)
             tail = head;
 
         size++;
+        return n;
     }
 
     public void addTail( T data){
@@ -91,7 +92,7 @@ public class LinkedList<T> {
         LinkedList<String> a = new LinkedList<>();
 
         a.addHead("3");a.addHead("4");a.addHead("5");a.addHead("6");
-        System.out.println(a);
+
 
 
 
