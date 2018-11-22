@@ -27,7 +27,6 @@ public  class Graph<V,E>  {
 
     }
 
-
      // I made an InnerVertex class to help access the unique data type V
           class InnerVertex<V> implements Vertex<V>{
          protected V data;
