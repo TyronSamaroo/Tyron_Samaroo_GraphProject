@@ -1,10 +1,10 @@
 package TestCase6;
 
-public class DNode<T> {
+public class DoubleNode<T> {
     private T data;
-    private DNode<T> prev, next;
+    private DoubleNode<T> prev, next;
 
-    public DNode(T d, DNode<T> p, DNode<T> n) {
+    public DoubleNode(T d, DoubleNode<T> p, DoubleNode<T> n) {
         data = d;
         next = n;
         prev = p;
@@ -14,11 +14,11 @@ public class DNode<T> {
         return data;
     }
 
-    public DNode<T> getNext() {
+    public DoubleNode<T> getNext() {
         return next;
     }
 
-    public DNode<T> getPrev() {
+    public DoubleNode<T> getPrev() {
         return prev;
     }
 
@@ -26,11 +26,11 @@ public class DNode<T> {
         data = d;
     }
 
-    public void setNext(DNode<T> n) {
+    public void setNext(DoubleNode<T> n) {
         next = n;
     }
 
-    public void setPrev(DNode<T> p) {
+    public void setPrev(DoubleNode<T> p) {
         prev = p;
     }
 }

@@ -5,32 +5,31 @@ package TestCase6;
 
 public  class Graph<V,E>  {
     // Two DoubleLinklist to store vertex and edges
- private DList<Vertex<V>> vertexDList = new DList<>();
- private DList<Edge<E>> edgeDList = new DList<>();
+ private DoubleLinkedList<Vertex<V>> vertexDoubleLinkedList = new DoubleLinkedList<>();
+ private DoubleLinkedList<Edge<E>> edgeDoubleLinkedList = new DoubleLinkedList<>();
 
  public Graph(){
-     vertexDList = null;
-     edgeDList = null;
+     vertexDoubleLinkedList = null;
+     edgeDoubleLinkedList = null;
  }
 
  // Methods for graph will go here
- public int numberVertex(){return  vertexDList.size(); }
- public int numberEdges(){ return  edgeDList.size(); }
+ public int numberVertex(){return  vertexDoubleLinkedList.size(); }
+ public int numberEdges(){ return  edgeDoubleLinkedList.size(); }
 
 
  // This is how I will add a Vertex to the Graph.
     public Vertex<V> addVertex(V data){
      InnerVertex<V> vnew = new InnerVertex<>(data);
-     vertexDList.addLast(vnew);
+     vertexDoubleLinkedList.addLast(vnew);
      return  vnew;
     }
-
 
 
      // I made an InnerVertex class to help access the unique data type V
           class InnerVertex<V> implements Vertex<V>{
          protected V data;
-         private DNode<Vertex<V>> location;
+         private DoubleNode<Vertex<V>> location;
 
          public InnerVertex(V data){
              this.data = data;
@@ -39,15 +38,15 @@ public  class Graph<V,E>  {
          public void setVertex(V data){this.data =data;}
 
 
-         public void setLocation(DNode<Vertex<V>> location){
+         public void setLocation(DoubleNode<Vertex<V>> location){
              this.location = location; }
-         public DNode<Vertex<V>> getLocation() {return location; }
+         public DoubleNode<Vertex<V>> getLocation() {return location; }
      }
 
     // I made an InnerVertex class to help access the unique data type V
       private class InnerEdges<E> implements Edge<E> {
          public E data;
-         private DNode<Edge<E>> location;
+         private DoubleNode<Edge<E>> location;
          private Vertex<V>[] endpoints;
 
          public InnerEdges(Vertex<Vertex> a, Vertex<Vertex> b, E data){
@@ -57,9 +56,9 @@ public  class Graph<V,E>  {
          public E getEdge(){return  data;}
          public void setEdge(E data){ this.data = data;}
 
-          public void setLocation(DList<Vertex<V>> a){
+          public void setLocation(DoubleLinkedList<Vertex<V>> a){
               this.location = location; }
-          public DNode<Edge<E>> getLocation() {return location; }
+          public DoubleNode<Edge<E>> getLocation() {return location; }
 
 
 

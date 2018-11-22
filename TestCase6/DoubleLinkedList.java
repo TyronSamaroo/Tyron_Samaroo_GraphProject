@@ -7,16 +7,16 @@ import java.util.Scanner;
 
 // doubly linked list, uses header and trailer sentinels.
 
-public class DList<T> {
-    private DNode<T> header, trailer;
+public class DoubleLinkedList<T> {
+    private DoubleNode<T> header, trailer;
     private int size;
 
-    public DList() {
+    public DoubleLinkedList() {
         size = 0;
-        header = new DNode<T>(null, null, null);
+        header = new DoubleNode<T>(null, null, null);
 
-        trailer = new DNode<>(null, header, null);
-        // header = new DNode<>(null,null,trailer);
+        trailer = new DoubleNode<>(null, header, null);
+        // header = new DoubleNode<>(null,null,trailer);
         header.setNext(trailer);
     }
 
@@ -32,27 +32,27 @@ public class DList<T> {
 
     // give clients access to nodes, but not to the header or trailer
 
-    public DNode<T> getFirst() throws Exception {
+    public DoubleNode<T> getFirst() throws Exception {
         if (isEmpty())
             throw new Exception("Empty");
         return header.getNext();
     }
 
-    public DNode<T> getLast() throws Exception {
+    public DoubleNode<T> getLast() throws Exception {
         if (isEmpty())
             throw new Exception("Empty");
         return trailer.getPrev();
     }
 
-    public DNode<T> getNext(DNode<T> v) throws Exception {
-        DNode<T> temp = v.getNext();
+    public DoubleNode<T> getNext(DoubleNode<T> v) throws Exception {
+        DoubleNode<T> temp = v.getNext();
         if (temp == null || temp == trailer)
             throw new Exception("No such node");
         return temp;
     }
 
-    public DNode<T> getPrev(DNode<T> v) throws Exception {
-        DNode<T> ans = v.getPrev();
+    public DoubleNode<T> getPrev(DoubleNode<T> v) throws Exception {
+        DoubleNode<T> ans = v.getPrev();
         if (ans == null || ans == header)
             throw new Exception("No such node");
         return ans;
@@ -60,29 +60,29 @@ public class DList<T> {
 
     // methods to change the list
 
-    public void addBefore(T d, DNode<T> current) {
-        DNode<T> temp = current.getPrev();   // This is the node that was already before the current
-        DNode<T> newNode = new DNode<T>(d,temp,current); // Node created with have current previous and
+    public void addBefore(T d, DoubleNode<T> current) {
+        DoubleNode<T> temp = current.getPrev();   // This is the node that was already before the current
+        DoubleNode<T> newNode = new DoubleNode<T>(d,temp,current); // Node created with have current previous and
         // current as its next
         temp.setNext(newNode);
         current.setPrev(newNode);
 
-//        DNode<T> x = new DNode<T>(d, current.getPrev(), current);
+//        DoubleNode<T> x = new DoubleNode<T>(d, current.getPrev(), current);
 //        x.getPrev().setNext(x);
 //        x.getNext().setPrev(x);
-//                DNode<T> x = new DNode<T>(d, current.getPrev(), current);
+//                DoubleNode<T> x = new DoubleNode<T>(d, current.getPrev(), current);
 //                current.getPrev().setNext(x);
 //                current.setPrev(x);
         size++;
     }
 
-    public void addAfter(T d, DNode<T> current) {
-//        DNode<T> w = v.getNext();
-//        DNode<T> x = new DNode<T>(d, v, w);
+    public void addAfter(T d, DoubleNode<T> current) {
+//        DoubleNode<T> w = v.getNext();
+//        DoubleNode<T> x = new DoubleNode<T>(d, v, w);
 //        v.setNext(x);
 //        w.setPrev(x);
-        // DNode<T> x = new DNode<>(d,current,current.getNext());
-        DNode<T> x = new DNode<T>(d,current,current.getNext());
+        // DoubleNode<T> x = new DoubleNode<>(d,current,current.getNext());
+        DoubleNode<T> x = new DoubleNode<T>(d,current,current.getNext());
         current.setNext(x);
         current.getNext().setPrev(x);
 
@@ -98,11 +98,11 @@ public class DList<T> {
         addBefore(d, trailer);
     }
 
-    public T remove(DNode<T> v) throws Exception {
+    public T remove(DoubleNode<T> v) throws Exception {
         if (v == header || v == trailer)
             throw new Exception("Sentinel");
-//        DNode<T> u = v.getPrev();
-//        DNode<T> w = v.getNext();
+//        DoubleNode<T> u = v.getPrev();
+//        DoubleNode<T> w = v.getNext();
 //        w.setPrev(u);
 //        u.setNext(w);
 
@@ -116,7 +116,7 @@ public class DList<T> {
 
     public String toString() {
         String ans = "";
-        DNode<T> n = header;
+        DoubleNode<T> n = header;
         ans += "(H)<-->";
         do {
             n = n.getNext();
@@ -129,8 +129,8 @@ public class DList<T> {
     }
 
     public static void main(String args[]) {
-        DList<String> list = new DList<String>();
-        DNode<String> cursor = null;
+        DoubleLinkedList<String> list = new DoubleLinkedList<String>();
+        DoubleNode<String> cursor = null;
         boolean done = false;
         Scanner s = new Scanner(System.in);
         while (!done) {
@@ -160,7 +160,7 @@ public class DList<T> {
                         System.out.print(help);
                         break;
                     case 'R':
-                        DNode<String> e = cursor.getNext();
+                        DoubleNode<String> e = cursor.getNext();
                         list.remove(cursor);
                         cursor = e;
                         if (cursor == list.trailer)
